@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdu.videoshare.mapper.FavorMapper">
+
+    
+    <insert id="recordFavor" parameterType="Favor">
+        insert into wn_favor (video_id,user_id)
+        values (#{videoId},#{userId});
+    </insert>
+
+    <select id="checkPraise" parameterType="int" resultType="Favor">
+        SELECT * FROM `wn_favor` WHERE video_id = #{videoId} and user_id = #{userId};
+    </select>
+    
+    <delete id="cancelFavor" parameterType="int">
+        delete from wn_favor where user_id=#{userId} and video_id=#{videoId};
+    </delete>
+
+</mapper>

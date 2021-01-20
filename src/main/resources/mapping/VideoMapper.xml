@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdu.videoshare.mapper.VideoMapper">
+
+    <resultMap id="videoResultMap" type="Video">
+        <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
+        <!-- property：主键在pojo中的属性名 -->
+        <!-- column：主键在数据库中的列名 -->
+        <id property="id" column="id"/>
+        <!-- 定义普通属性 -->
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="cover" column="cover"/>
+        <result property="category.id" column="category_id"/>
+        <result property="category.name" column="name"/>
+        <result property="user.account" column="account"/>
+        <result property="pubTime" column="pub_time"/>
+        <result property="viewNum" column="view_num"/>
+        <result property="praiseNum" column="praise_num"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="videoResultMap" parameterType="java.util.Map">
+        select v.*,u.account,c.`name`
+        from wn_user u,wn_category c,wn_video v
+        where
+        u.id = v.user_id
+        and c.id = v.category_id
+        <if test="categoryId != 0 and categoryId != null">
+            and v.category_id=#{categoryId}
+        </if>
+        <if test="title != null and title !='' ">
+            and v.title=#{title}
+        </if>
+        <if test="startTime != null and startTime != '' ">
+            and pub_time &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and startTime != '' ">
+            and pub_time &lt;= #{endTime};
+        </if>
+    </select>
+
+    <select id="getById" resultType="Video">
+        select * from wn_video where id=#{id};
+    </select>
+    
+    <insert id="addVideo" parameterType="Video">
+        insert into wn_video(title,cover,url,user_id,category_id)
+        values (#{title},#{cover},#{url},#{user.id},#{category.id})
+    </insert>
+
+    <update id="updUserVideoNum" parameterType="int">
+        update wn_user set video_num = video_num + 1 where id = #{id};
+    </update>
+
+    <select id="getForIndexByCategory" parameterType="int" resultType="Video">
+        select * from wn_video where category_id=#{id};
+    </select>
+
+    <select id="getForIndexByName"  resultType="Video" parameterType="String">
+        select * from wn_video where title like "%"#{title}"%";
+    </select>
+
+
+
+
+</mapper>

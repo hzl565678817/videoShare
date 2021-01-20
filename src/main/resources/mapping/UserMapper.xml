@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdu.videoshare.mapper.UserMapper">
+
+
+    <select id="checkUser" resultType="int" parameterType="String">
+        select count(*) from wn_user where account = #{account};
+    </select>
+
+    <insert id="addUser" parameterType="User">
+        insert into wn_user(account,password,email) values (#{account},#{password},#{email});
+    </insert>
+
+    <select id="getUserByAccountAndPwd" resultMap="userMap" parameterType="String">
+        select * from wn_user where account = #{account} and password = #{password};
+    </select>
+
+    <resultMap id="userMap" type="User">
+        <id property="id" column="id"/>
+        <!-- 定义普通属性 -->
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="regTime" column="reg_time"/>
+        <result property="videoNum" column="video_num"/>
+        <result property="score" column="score"/>
+        <result property="photoUrl" column="photo_url"/>
+        <result property="status.name" column="status"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="userResultMap" >
+        select v.*,s.sname
+        from wn_user v,wn_status s
+        where  v.status=s.id
+        <if test="statusId!=null and statusId!=0">
+            and v.status=#{statusId}
+        </if>
+        <if test="account!=null and account!='' ">
+            and account=#{account}
+        </if>
+        <if test="startTime!=null and startTime!='' ">
+            and reg_time>=#{startTime}
+        </if>
+
+    </select>
+    <resultMap id="userResultMap" type="User">
+        <id column="id" property="id"></id>
+        <result column="account" property="account"></result>
+        <result column="email" property="email"></result>
+        <result column="reg_time" property="regTime"></result>
+        <result column="video_num" property="videoNum"></result>
+        <result column="sname" property="status.sname"></result>
+    </resultMap>
+
+
+    <delete id="delById">
+        delete from wn_user where id=#{id};
+    </delete>
+
+    <update id="update">
+        update  wn_user set status=#{status} where id=#{id};
+    </update>
+</mapper>

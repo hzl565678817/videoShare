@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdu.videoshare.mapper.StatusMapper">
+
+    <select id="getAll" resultType="Status">
+        select * from wn_status;
+    </select>
+    <delete id="delById">
+        delete from wn_status where id=#{id};
+    </delete>
+    <select id="getById" resultType="Status">
+        select * from wn_status where id=#{id};
+    </select>
+    <update id="update">
+        update  wn_status set name=#{name} where id=#{id};
+    </update>
+</mapper>

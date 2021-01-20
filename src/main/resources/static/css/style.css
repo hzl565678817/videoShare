@@ -1,0 +1,50 @@
+@charset "utf-8";
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'lato';
+    list-style: none;
+    text-decoration: none;
+}
+
+.mainMenu{
+    margin-top: 40px;
+    width: 120px;
+    float: right;
+    margin-left: 50px;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.item{
+    border-top: 1px solid #ef584a;
+    overflow: hidden;
+}
+.btn{
+    display: block;
+    padding: 15px 20px;
+    background-color: #ff6f61;
+    color: #fff;
+    position: relative;
+
+}
+.btn:before{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right:8px solid transparent;
+    border-top:10px solid #ff6f61;
+    right: 15px;
+    bottom: -10px;
+    z-index: 9;
+    
+}
+.btn i {
+    margin-right: 10px;
+}
+
+.item:target .subMenu{
+    max-height: 10em;
+}

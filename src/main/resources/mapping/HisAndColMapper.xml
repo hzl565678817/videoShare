@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdu.videoshare.mapper.HisAndColMapper">
+
+    <select id="getAll" resultMap="viewHisAndCol" parameterType="int">
+        select wv.*,wh.view_time from wn_video wv ,wn_history wh where wh.user_id =#{userId} and wh.video_id = wv.id
+    </select>
+
+    <resultMap id="viewHisAndCol" type="Video">
+        <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
+        <!-- property：主键在pojo中的属性名 -->
+        <!-- column：主键在数据库中的列名 -->
+        <id property="id" column="id"/>
+        <!-- 定义普通属性 -->
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="cover" column="cover"/>
+        <result property="category.id" column="category_id"/>
+        <result property="category.name" column="name"/>
+        <result property="user.account" column="account"/>
+        <result property="pubTime" column="pub_time"/>
+        <result property="viewNum" column="view_num"/>
+        <result property="praiseNum" column="praise_num"/>
+        <result property="status" column="status"/>
+        <result property="viewTime" column="favor_time"/>
+        <result property="viewTime" column="view_time"/>
+    </resultMap>
+
+    <select id="getAllCollection" resultMap="viewHisAndCol" parameterType="int">
+        select wv.*,wf.favor_time from wn_video wv ,wn_favor wf where wf.user_id =#{userId} and wf.video_id = wv.id
+    </select>
+
+    <insert id="addHistoryByUser" parameterType="int">
+        insert into wn_history(user_id,video_id) values (#{userId},#{videoId});
+    </insert>
+
+    <select id="checkRecord" parameterType="int" resultType="int">
+        select count(*) from wn_history where user_id=#{userId} and video_id=#{videoId};
+    </select>
+
+    <update id="modifyRecord" parameterType="int">
+        update wn_history set view_time = now() where user_id = #{userId} and video_id=#{videoId};
+    </update>
+
+
+</mapper>
