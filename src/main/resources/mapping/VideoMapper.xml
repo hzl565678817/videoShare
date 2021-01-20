@@ -19,14 +19,14 @@
         <result property="pubTime" column="pub_time"/>
         <result property="viewNum" column="view_num"/>
         <result property="praiseNum" column="praise_num"/>
-        <result property="status" column="status"/>
+        <result property="status.sname" column="sname"/>
     </resultMap>
 
     <select id="getAll" resultMap="videoResultMap" parameterType="java.util.Map">
-        select v.*,u.account,c.`name`
-        from wn_user u,wn_category c,wn_video v
-        where
-        u.id = v.user_id
+        select v.*,u.account,c.`name`,s.sname
+        from wn_user u,wn_category c,wn_video v,wn_status s
+        where v.status= s.id
+        and u.id = v.user_id
         and c.id = v.category_id
         <if test="categoryId != 0 and categoryId != null">
             and v.category_id=#{categoryId}
@@ -39,6 +39,17 @@
         </if>
         <if test="endTime != null and startTime != '' ">
             and pub_time &lt;= #{endTime};
+        </if>
+    </select>
+
+    <select id="getIndexAll" resultMap="videoResultMap" parameterType="int">
+        select v.*,u.account,c.`name`,s.sname
+        from wn_user u,wn_category c,wn_video v,wn_status s
+        where v.status= s.id
+        and u.id = v.user_id
+        and c.id = v.category_id
+        <if test="status != 0 and status != null">
+            and v.status = #{status}
         </if>
     </select>
 
@@ -62,7 +73,17 @@
     <select id="getForIndexByName"  resultType="Video" parameterType="String">
         select * from wn_video where title like "%"#{title}"%";
     </select>
+    <delete id="delById">
+        delete from wn_video where id=#{id};
+    </delete>
 
+    <update id="modifyStatus" parameterType="int">
+        update  wn_video set status = #{status} where id =#{id};
+    </update>
+    
+    <update id="modifyViewNum" parameterType="int">
+        update wn_video set view_num = view_num + 1 where id=#{videoId} and user_id=#{userId};
+    </update>
 
 
 

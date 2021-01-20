@@ -39,8 +39,9 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public List<Video> getForIndex() {
+        int status = 1;
         PageHelper.startPage(1, 15);  //开启分页，接收两个参数：页码及分页大小
-        List<Video> data = videoMapper.getAll();
+        List<Video> data = videoMapper.getIndexAll(status);
         PageInfo<Video> pageInfo = new PageInfo<>(data); //包含分页的信息
         return pageInfo.getList();
     }
@@ -70,5 +71,18 @@ public class VideoServiceImpl implements VideoService {
         return videoMapper.getForIndexByName(title);
     }
 
+    @Override
+    public void delById(int id) {
+        videoMapper.delById(id);
+    }
 
+    @Override
+    public void modifyStatus(int id,int status) {
+        videoMapper.modifyStatus(id,status);
+    }
+
+    @Override
+    public int modifyViewNum(int userId, int videoId) {
+        return videoMapper.modifyViewNum(userId,videoId);
+    }
 }

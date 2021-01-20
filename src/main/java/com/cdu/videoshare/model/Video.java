@@ -23,7 +23,8 @@ public class Video {
     private String cover;
     private int viewNum;
     private int praiseNum;
-    private String status;
+    private Status status;
+    private String sname;
     private String viewTime;
 
 

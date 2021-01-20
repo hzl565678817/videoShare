@@ -8,6 +8,10 @@
     <title></title>
     <link rel="stylesheet" href="css/pintuer.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="lib/layui/css/layui.css">
+    <script type="text/javascript" src="lib/laydate/laydate.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.all.js"></script>
+    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
     <script>
         window.addEventListener("load", function () {
             document.getElementById("categoryId").value = "${conditionMap.categoryId}"
@@ -19,6 +23,57 @@
             document.getElementById("pageNum").value = pageNum;
             document.getElementById("queryForm").submit();
         }
+
+        function formReset() {
+            $(':input,#myform')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
+        }
+
+
+    </script>
+    <script>
+        function modify(videoId){
+            layer.confirm('请选择启用或者停用', {
+                btn: ['启用', '停用','取消'], //按钮
+                cancel: function(index){
+                    layer.close(index);
+                },title:'审核提示',
+            }, function () {
+                $.ajax({
+                    url: "video/modify/normal",
+                    type: "get",
+                    data: {
+                        id: videoId
+                    },
+                    success: function (data) {
+                        if(data.code == "200"){
+                            setTimeout(function(){window.location.reload()},500)
+                            layer.msg('启用成功!', {icon: 1, time: 500});
+                        }
+                    }
+                })
+            }, function (index) {
+                $.ajax({
+                    url: "video/modify/ban",
+                    type: "get",
+                    data: {
+                        id: videoId
+                    },
+                    success: function (data) {
+                        if(data.code == "200"){
+                            setTimeout(function(){window.location.reload()},500)
+                            layer.msg('停用成功!', {icon: 1, time: 500});
+                        }
+                    }
+                })
+                layer.close(index);
+            });
+        }
+
+
     </script>
 </head>
 <body>
@@ -52,6 +107,11 @@
                 <li>
                     <button class="button border-main icon-search">搜索</button>
                 </li>
+                <li>
+                    <button class="button border-main " onclick="formReset()">
+                        <i class="layui-icon">&#xe669;</i> 刷新
+                    </button>
+                </li>
             </ul>
         </form>
     </div>
@@ -78,13 +138,14 @@
                 <td>${video.pubTime}</td>
                 <td>${video.viewNum}</td>
                 <td>${video.praiseNum}</td>
-                <td>${video.status}</td>
+                <td>${video.status.sname}</td>
                 <td>
                     <div class="button-group">
-                        <a class="button border-main" href=""><span
-                                class="icon-edit"></span> 审核</a> <a class="button border-red"
-                                                                    href="javascript:void(0)"
-                                                                    onclick="javascript:location.href=''"><span
+                        <a id="status" class="button border-main" ><span
+                                class="icon-edit" onclick="modify(${video.id})" ></span>审核</a>
+                        <a class="button border-red"
+                           href="javascript:void(0)"
+                           onclick="deleteVideo(this,${video.id})"><span
                             class="icon-trash-o"></span> 删除</a>
                     </div>
                 </td>
@@ -120,5 +181,22 @@
         elem: '#date2'
         , type: 'datetime'
     });
+
+    function deleteVideo(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.ajax({
+                url: "/video/del",
+                type: "get",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!', {icon: 1, time: 1000});
+                }
+            })
+        });
+    }
 </script>
 </html>

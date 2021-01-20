@@ -21,6 +21,15 @@
             document.getElementById("pageNum").value = pageNum;
             document.getElementById("queryForm").submit();
         }
+
+
+        function formReset() {
+            $(':input,#myform')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
+        }
     </script>
 </head>
 <body>
@@ -58,7 +67,7 @@
                     </li>
 
                     <li>
-                        <button class="button border-main " >
+                        <button class="button border-main " onclick="formReset()">
                             <i class="layui-icon">&#xe669;</i> 刷新
                         </button>
                     </li>

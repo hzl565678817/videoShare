@@ -51,6 +51,7 @@ public class IndexController {
         User user = (User) session.getAttribute("user");
         if (user != null){
             int status = hisAndColService.checkRecord(user.getId(), id);
+            videoService.modifyViewNum(user.getId(),id);
             if (status == STATUS){
                 hisAndColService.modifyRecord(user.getId(),id);
             }else {

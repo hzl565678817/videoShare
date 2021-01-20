@@ -21,7 +21,7 @@ public interface VideoMapper {
      * @return 返回泛型为Video的List集合
      */
     List<Video> getAll(Map<String, String> map);
-    List<Video> getAll();
+    List<Video> getIndexAll(int status);
 
     Video getById(int id);
 
@@ -33,6 +33,10 @@ public interface VideoMapper {
 
     List<Video> getForIndexByName(String title);
 
+    void delById(int id);
+
+    void modifyStatus(int id,int status);
+    int modifyViewNum(int userId,int videoId);
 
 
 }

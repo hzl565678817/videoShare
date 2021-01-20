@@ -37,7 +37,7 @@
         <result property="pubTime" column="pub_time"/>
         <result property="viewNum" column="view_num"/>
         <result property="praiseNum" column="praise_num"/>
-        <result property="status" column="status"/>
+        <result property="status.sname" column="sname"/>
     </resultMap>
 
 

@@ -70,6 +70,16 @@
         });
     });
 </script>
+
+<script>
+    function check(status,id){
+        if (status == "2"){
+            layer.msg("该视频已被禁止播放");
+        }else {
+            window.open("video/view/"+id);
+        }
+    }
+</script>
 <body>
 <div
         class="v3-app-layout layoutstatus-header--Normal layoutstatus-side--Normal limitWidth">
@@ -113,8 +123,8 @@
                             <c:forEach items="${videos}" begin="0" end="${fn:length(videos)}" var="video" varStatus="p">
                                 <div class="FeedContainer__itemWrapper">
                                     <div class="VerticalFeedCard VerticalChannelBlockList__item">
-                                        <a class="VerticalFeedCard__coverWrapper" title=""
-                                           href="video/view/${video.id}" target="_blank" data-disable_default="true">
+                                        <a  onclick="check(${video.status.id},${video.id})" class="VerticalFeedCard__coverWrapper" title=""
+                                           target="_blank" data-disable_default="true">
                                             <picture>
                                                 <source srcSet="" type="image/webp"/>
                                                 <img class="BU-MagicImage"

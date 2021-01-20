@@ -1,6 +1,7 @@
 package com.cdu.videoshare.controller;
 
 import com.cdu.videoshare.model.Category;
+import com.cdu.videoshare.model.ResponseEntity;
 import com.cdu.videoshare.model.User;
 import com.cdu.videoshare.model.Video;
 import com.cdu.videoshare.service.CategoryService;
@@ -55,6 +56,43 @@ public class VideoController {
         model.addAttribute("conditionMap", conditionMap);
         return "admin/video_list";
     }
+
+    //删除视频
+    @GetMapping("/del")
+    public String del(int id,Integer pageNum, Model model,@RequestParam(required = false) Map<String, String> conditionMap) {
+        videoService.delById(id);
+        model.addAttribute("pageInfo", videoService.getAll(pageNum == null ? 1 : pageNum,conditionMap));
+        return "admin/video_list";
+    }
+
+    @GetMapping("/modify/normal")
+    @ResponseBody
+    public ResponseEntity<Void> modifyStatusNormal(Integer id,Integer pageNum, Model model,@RequestParam(required = false) Map<String, String> conditionMap) {
+        int status = 1;
+        ResponseEntity<Void> responseEntity = null;
+        videoService.modifyStatus(id,status);
+        model.addAttribute("pageInfo", videoService.getAll(pageNum == null ? 1 : pageNum,conditionMap));
+        responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("ok");
+        return responseEntity;
+    }
+
+    @GetMapping("/modify/ban")
+    @ResponseBody
+    public ResponseEntity<Void> modifyStatusBan(Integer id,Integer pageNum, Model model,@RequestParam(required = false) Map<String, String> conditionMap) {
+        int status = 2;
+        ResponseEntity<Void> responseEntity = null;
+        videoService.modifyStatus(id,status);
+        model.addAttribute("pageInfo", videoService.getAll(pageNum == null ? 1 : pageNum,conditionMap));
+        responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(200);
+        responseEntity.setMsg("ok");
+        return responseEntity;
+    }
+
+
+
 
     @GetMapping("add")
     public String add(Model model){

@@ -30,6 +30,10 @@ public interface VideoService {
     int addVideo(Video video);
     int updUserVideoNum(int id);
 
+    void delById(int id);
 
+    void modifyStatus(int id,int status);
+
+    int modifyViewNum(int userId,int videoId);
 
 }
