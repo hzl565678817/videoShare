@@ -49,7 +49,7 @@
         <span class="icon-pencil-square-o"></span>个人中心
     </h2>
     <ul>
-        <li><a href="admin/updatepwd" target="right"><span
+        <li><a href="admin/modifypwd" target="right"><span
                 class="icon-caret-right"></span>修改密码</a></li>
     </ul>
 </div>

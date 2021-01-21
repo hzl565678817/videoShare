@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="lib/layui/layui.all.js"></script>
 	<script src="js/jquery-3.4.1.js" ></script>
 	<script>
-		function Praise(obj, id) {
+		function Favor(obj, id) {
 			var user = "${sessionScope.user}"
 			const param = document.getElementById("favor").innerText;
 			if (user == null || user == ""){
@@ -51,6 +51,47 @@
 			}
 		}
 	</script>
+	<script>
+		function Praise(obj, id) {
+			var user = "${sessionScope.user}"
+			var param = document.getElementById("praise").innerText;
+			if (user == null || user == ""){
+				layer.msg("很抱歉，您还没有登录呢！",{icon: 3, time: 1000});
+			}else {
+				if (param=='点赞'){
+					$.ajax({
+						url: "/praise/add",
+						type: "get",
+						data: {
+							id: id
+						},
+						success: function (data) {
+							if(data.code == "200"){
+								document.getElementById("praise").innerText="取消点赞";
+								layer.msg('点赞成功!', {icon: 1, time: 1000});
+							}
+
+						}
+					})
+				}else {
+					$.ajax({
+						url: "/praise/delete",
+						type: "get",
+						data: {
+							id: id
+						},
+						success: function (data) {
+							if(data.code == "200"){
+								document.getElementById("praise").innerText="点赞";
+								layer.msg('取消成功', {icon: 1, time: 1000});
+							}
+
+						}
+					})
+				}
+			}
+		}
+	</script>
 </head>
 <body>
 	<div
@@ -71,10 +112,19 @@
 										<div class="action-collect">
 											<i class="action-collect__lottie"></i>
 											<c:if test="${not empty favor}">
-											<span id="favor" class="action-collect__txt" onclick="Praise(this,${video.id})">取消收藏</span>
+											<span id="favor" class="action-collect__txt" onclick="Favor(this,${video.id})">取消收藏</span>
 											</c:if>
 											<c:if test="${empty favor}">
-											<span id="favor" class="action-collect__txt" onclick="Praise(this,${video.id})">收藏</span>
+											<span id="favor" class="action-collect__txt" onclick="Favor(this,${video.id})">收藏</span>
+											</c:if>
+										</div>
+										<div class="action-collect">
+											<i class="action-collect__lottie"></i>
+											<c:if test="${not empty praise}">
+												<span id="praise" class="action-collect__txt" onclick="Praise(this,${video.id})">取消点赞</span>
+											</c:if>
+											<c:if test="${empty praise}">
+												<span id="praise" class="action-collect__txt" onclick="Praise(this,${video.id})">点赞</span>
 											</c:if>
 										</div>
 										<span

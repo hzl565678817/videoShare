@@ -25,7 +25,7 @@
 <div class="compoent-sortTabs__container">
     <div class="compoent-sortTabs__tabItemWrapper">
         <div id="accountSet" class="compoent-sortTabs__tabItem active">
-            <i class="icon-person2"></i><span><a href="home/personal" id="id1" target="_parent">账号设置</a></span>
+            <i class="icon-person2"></i><span><a href="home/updview" id="id1" target="_parent">账号设置</a></span>
             <div class="ink"></div>
         </div>
     </div>
@@ -55,7 +55,7 @@
     </div>
     <div class="compoent-sortTabs__tabItemWrapper">
         <div class="compoent-sortTabs__tabItem">
-            <i class="icon-vip"></i><span><a href="view/history">点赞视频</a></span>
+            <i class="icon-vip"></i><span><a href="/view/praise">点赞视频</a></span>
             <div class="ink"></div>
         </div>
     </div>

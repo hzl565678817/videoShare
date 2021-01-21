@@ -109,7 +109,7 @@
                         <i class="icon-side_collect"></i><span>我的收藏</span></a>
                     <a id="myVideo" class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我的视频</span></a>
-                    <a  class="v3-app-layout__side__item">
+                    <a href="view/praise"  class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我点赞的视频</span></a>
                     <a  class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我评论的视频</span></a>

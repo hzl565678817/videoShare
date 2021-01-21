@@ -1,10 +1,7 @@
 package com.cdu.videoshare.controller;
 
 import com.cdu.videoshare.model.User;
-import com.cdu.videoshare.service.CategoryService;
-import com.cdu.videoshare.service.FavorService;
-import com.cdu.videoshare.service.VideoService;
-import com.cdu.videoshare.service.HisAndColService;
+import com.cdu.videoshare.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +35,9 @@ public class IndexController {
     @Autowired
     HisAndColService hisAndColService;
 
+    @Autowired
+    PraiseService praiseService;
+
     @GetMapping("/index")
     public String index(Model model) {
         //查询所有的类别并且存在Model中
@@ -58,6 +58,7 @@ public class IndexController {
                 hisAndColService.addHistoryByUser(user.getId(), id);
             }
             model.addAttribute("favor",favorService.checkFavor(id, user.getId()));
+            model.addAttribute("praise",praiseService.checkPraise(id,user.getId()));
         }
 
         model.addAttribute("categories",categoryService.getAll());

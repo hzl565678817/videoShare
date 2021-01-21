@@ -24,6 +24,7 @@ public interface HisAndColService {
 
     List<Video> getAllCollection(int userId);
     List<Video> getMyVideo(int userId);
+    List<Video> getPraise(int userId);
 
 
 }

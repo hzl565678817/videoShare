@@ -28,6 +28,6 @@ public interface HisAndColMapper {
 
     List<Video> getMyVideo(int userId);
 
-
+    List<Video> getPraise(int userId);
 
 }

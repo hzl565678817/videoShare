@@ -50,5 +50,11 @@ public class HisAndColController {
         return "home/myVideo";
     }
 
+    @GetMapping("praise")
+    public String viewPraise(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("videos", hisAndColService.getPraise(user.getId()));
+        return "home/videoPraise";
+    }
 
 }

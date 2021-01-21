@@ -111,7 +111,7 @@
                                         style="display: inline-block; width: 44px; height: 44px; border-radius: 22px; background-size: 100%; background-image: url(${pageContext.request.contextPath }/photo/${sessionScope.user.photoUrl}); cursor: pointer">
                                         <ul id="dl" style="visibility: hidden" class="mainMenu">
                                             <li class="item" id="account">
-                                                <a href="/home/personal" class="btn"><i class="fas fa-user-circle"></i>我的帐户</a>
+                                                <a href="/home/index" class="btn"><i class="fas fa-user-circle"></i>我的帐户</a>
                                             </li>
                                             <li class="item">
                                                 <a href="/admin/logout" class="btn"><i class="fas fa-sign-out-alt"></i>退出登录</a>

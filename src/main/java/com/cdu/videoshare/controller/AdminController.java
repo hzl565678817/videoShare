@@ -63,4 +63,10 @@ public class AdminController {
         return "redirect:/index";
     }
 
+
+    @GetMapping("modifypwd")
+    public String modifyPwd(){
+        return "admin/updpwd";
+    }
+
 }

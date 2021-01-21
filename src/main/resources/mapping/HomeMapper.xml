@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdu.videoshare.mapper.HomeMapper">
+
+    <resultMap id="userMap" type="User">
+        <id property="id" column="id"/>
+        <!-- 定义普通属性 -->
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="regTime" column="reg_time"/>
+        <result property="videoNum" column="video_num"/>
+        <result property="score" column="score"/>
+        <result property="photoUrl" column="photo_url"/>
+        <result property="status.id" column="status"/>
+    </resultMap>
+    <select id="getById" resultMap="userMap">
+        select * from wn_user where  id=#{id}
+    </select>
+    <update id="updateById">
+        update wn_user set password=#{password} , account=#{account} , email=#{email}  where id=#{id}
+    </update>
+
+
+
+
+</mapper>

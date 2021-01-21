@@ -50,4 +50,9 @@ public class HisAndColServiceImpl implements HisAndColService {
     public List<Video> getMyVideo(int userId) {
         return hisAndColMapper.getMyVideo(userId);
     }
+
+    @Override
+    public List<Video> getPraise(int userId) {
+        return hisAndColMapper.getPraise(userId);
+    }
 }
