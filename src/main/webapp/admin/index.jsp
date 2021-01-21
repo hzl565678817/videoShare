@@ -14,7 +14,7 @@
         <h1>蜗牛短视频分享管理系统</h1>
     </div>
     <div class="head-l">
-        <a class="button button-little bg-green" href="/welcome.jsp"
+        <a class="button button-little bg-green" href="video/list"
            target="right"> <span class="icon-home"></span>管理首页
         </a> &nbsp;&nbsp; <a class="button button-little bg-red"
                              href="/admin/logout"> <span class="icon-power-off"></span>退出登录
@@ -54,7 +54,7 @@
     </ul>
 </div>
 <div class="admin">
-    <iframe src="admin/welcome.jsp" name="right" width="100%" height="100%"></iframe>
+    <iframe src="video/list" name="right" width="100%" height="100%"></iframe>
 </div>
 </body>
 </html>
