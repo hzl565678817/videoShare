@@ -22,6 +22,12 @@ public interface HisAndColMapper {
     void addHistoryByUser(int userId, int videoId);
 
     void modifyRecord(int userId, int videoId);
+
+
     List<Video> getAllCollection(int userId);
+
+    List<Video> getMyVideo(int userId);
+
+
 
 }

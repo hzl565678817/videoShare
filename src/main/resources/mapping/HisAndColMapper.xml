@@ -29,6 +29,10 @@
         <result property="viewTime" column="view_time"/>
     </resultMap>
 
+    <select id="getMyVideo" parameterType="int" resultMap="viewHisAndCol">
+        select * from wn_video where user_id=#{userId};
+    </select>
+
     <select id="getAllCollection" resultMap="viewHisAndCol" parameterType="int">
         select wv.* ,ws.id as sid,ws.sname,wf.favor_time from wn_video wv ,wn_status ws,wn_favor wf where ws.id=wv.`status` and wf.video_id=wv.id and wv.user_id=wf.user_id=#{userId}
     </select>

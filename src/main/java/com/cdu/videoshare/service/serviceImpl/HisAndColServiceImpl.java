@@ -45,4 +45,9 @@ public class HisAndColServiceImpl implements HisAndColService {
     public List<Video> getAllCollection(int userId) {
         return hisAndColMapper.getAllCollection(userId);
     }
+
+    @Override
+    public List<Video> getMyVideo(int userId) {
+        return hisAndColMapper.getMyVideo(userId);
+    }
 }

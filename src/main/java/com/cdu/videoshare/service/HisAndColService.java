@@ -23,6 +23,7 @@ public interface HisAndColService {
     void addHistoryByUser(int userId, int videoId);
 
     List<Video> getAllCollection(int userId);
+    List<Video> getMyVideo(int userId);
 
 
 }

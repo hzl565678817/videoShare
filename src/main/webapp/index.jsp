@@ -31,21 +31,10 @@
                     layer.close(index);
                 });
             }else {
-                window.location.href = "/view/history";
+                window.open("/view/history");
             }
-        });
-
-        var pathname = window.location.pathname;
-        if (pathname == "/view/collection"){
-            $('#index').removeClass("active");
-            $('#viewCollection').addClass("active");
-        }else if (pathname == "/view/history"){
-            $('#index').removeClass("active");
-            $('#viewHistory').addClass("active");
-        }else if(pathname == "/index"){
-            $('#index').addClass("active");
-        }
-    });
+        })
+    })
 </script>
 
 <script>
@@ -65,21 +54,12 @@
                     layer.close(index);
                 });
             }else {
-                window.location.href = "/view/collection";
+                window.open("/view/collection");
             }
         });
     });
 </script>
 
-<script>
-    function check(status,id){
-        if (status == "2"){
-            layer.msg("该视频已被禁止播放" ,{icon: 2, time: 700});
-        }else {
-            window.open("video/view/"+id);
-        }
-    }
-</script>
 <body>
 <div
         class="v3-app-layout layoutstatus-header--Normal layoutstatus-side--Normal limitWidth">
@@ -104,7 +84,7 @@
                         <i class="icon-history"></i><span>观看历史</span></a>
                     <a id="viewCollection" class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我的收藏</span></a>
-                    <a  class="v3-app-layout__side__item">
+                    <a href="view/myvideo" class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我的视频</span></a>
                     <a  class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我点赞的视频</span></a>
@@ -130,7 +110,7 @@
                             <c:forEach items="${videos}" begin="0" end="${fn:length(videos)}" var="video" varStatus="p">
                                 <div class="FeedContainer__itemWrapper">
                                     <div class="VerticalFeedCard VerticalChannelBlockList__item">
-                                        <a  onclick="check(${video.status.id},${video.id})" class="VerticalFeedCard__coverWrapper" title=""
+                                        <a  class="VerticalFeedCard__coverWrapper" title=""
                                            target="_blank" data-disable_default="true">
                                             <picture>
                                                 <source srcSet="" type="image/webp"/>

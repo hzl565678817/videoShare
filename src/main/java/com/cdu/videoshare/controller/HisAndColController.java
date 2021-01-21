@@ -32,16 +32,23 @@ public class HisAndColController {
     @GetMapping("history")
     public String viewHistory(Model model, HttpSession session){
         User user = (User) session.getAttribute("user");
-        model.addAttribute("categories",categoryService.getAll());
         model.addAttribute("videos", hisAndColService.getAll(user.getId()));
-        return "index";
+        return "home/videoHistory";
     }
 
     @GetMapping("collection")
     public String viewCollection(Model model, HttpSession session){
         User user = (User) session.getAttribute("user");
-        model.addAttribute("categories",categoryService.getAll());
         model.addAttribute("videos", hisAndColService.getAllCollection(user.getId()));
-        return "index";
+        return "home/videoCollection";
     }
+
+    @GetMapping("myvideo")
+    public String viewMy(Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("videos", hisAndColService.getAllCollection(user.getId()));
+        return "home/myVideo";
+    }
+
+
 }
