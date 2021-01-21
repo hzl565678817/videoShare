@@ -1,6 +1,7 @@
 package com.cdu.videoshare.controller;
 
 import com.cdu.videoshare.model.Admin;
+import com.cdu.videoshare.model.ResponseEntity;
 import com.cdu.videoshare.model.User;
 import com.cdu.videoshare.service.AdminService;
 import com.cdu.videoshare.service.HomeService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,14 +79,19 @@ public class AdminController {
     }
 
     @PostMapping("updatepwd")
-    public String modifyPwd(int id, String password1, String password2, Model model){
+    @ResponseBody
+    public ResponseEntity<Void> modifyPwd(int id, String password1, String password2, Model model,HttpSession session){
+        ResponseEntity<Void> responseEntity = null;
         if (password1.equals(password2)) {
+            responseEntity = new ResponseEntity<>();
+            responseEntity.setCode(200);
             adminService.updatePwd(id, password1);
-            model.addAttribute("msg", "修改成功");
-            return "admin/updpwd";
+            session.invalidate();
+            return responseEntity;
         } else {
-            model.addAttribute("msg", "确认密码不一致");
-            return "admin/updpwd";
+            responseEntity = new ResponseEntity<>();
+            responseEntity.setCode(201);
+            return responseEntity;
         }
     }
 
