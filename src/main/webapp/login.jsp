@@ -30,7 +30,7 @@
                             <div class="content-main content-main-modal">
                                 <form  action="user/login" method="post" class="form-main">
                                     <div class="form-input ">
-                                        <div class="input-container"><input id="account" name="account" type="tel"
+                                        <div class="input-container"><input id="account"  autocomplete="off" name="account" type="tel"
                                                 class="form-input-main" placeholder="请输入账号" autocomplete="on" value="">
                                         </div>
                                     </div>

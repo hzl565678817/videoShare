@@ -100,7 +100,7 @@ public class UserController {
             return "/login";
         }
         session.setAttribute("user",user);
-        return "/index";
+        return "redirect:/index";
     }
 
 
