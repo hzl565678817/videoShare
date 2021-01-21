@@ -18,5 +18,6 @@ public interface UserService {
     PageInfo<User> getAll(int pageNum, UserQueryCondition condition);
 
     void update(@Param("id") int id, @Param("status") String status);
+    void modifyStatus(int id,int status);
 
 }

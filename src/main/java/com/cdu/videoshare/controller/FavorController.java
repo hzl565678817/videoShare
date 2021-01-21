@@ -41,11 +41,11 @@ public class FavorController {
             if (recordFavor == STATUS){
                 responseEntity = new ResponseEntity<>();
                 responseEntity.setCode(200);
-                responseEntity.setMsg("ok");
+                responseEntity.setMessage("ok");
             }else {
                 responseEntity = new ResponseEntity<>();
                 responseEntity.setCode(500);
-                responseEntity.setMsg("error");
+                responseEntity.setMessage("error");
             }
         }
         return  responseEntity;
@@ -60,11 +60,11 @@ public class FavorController {
         if (recordFavor == STATUS){
             responseEntity = new ResponseEntity<>();
             responseEntity.setCode(200);
-            responseEntity.setMsg("ok");
+            responseEntity.setMessage("ok");
         }else {
             responseEntity = new ResponseEntity<>();
             responseEntity.setCode(500);
-            responseEntity.setMsg("error");
+            responseEntity.setMessage("error");
         }
         return  responseEntity;
     }

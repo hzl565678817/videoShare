@@ -36,4 +36,7 @@ public interface VideoService {
 
     int modifyViewNum(int userId,int videoId);
 
+    void delVideoById(int id);
+
+
 }

@@ -5,6 +5,7 @@ import com.cdu.videoshare.model.ResponseEntity;
 import com.cdu.videoshare.model.User;
 import com.cdu.videoshare.model.Video;
 import com.cdu.videoshare.service.CategoryService;
+import com.cdu.videoshare.service.HisAndColService;
 import com.cdu.videoshare.service.VideoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,7 +75,7 @@ public class VideoController {
         model.addAttribute("pageInfo", videoService.getAll(pageNum == null ? 1 : pageNum,conditionMap));
         responseEntity = new ResponseEntity<>();
         responseEntity.setCode(200);
-        responseEntity.setMsg("ok");
+        responseEntity.setMessage("ok");
         return responseEntity;
     }
 
@@ -87,7 +88,7 @@ public class VideoController {
         model.addAttribute("pageInfo", videoService.getAll(pageNum == null ? 1 : pageNum,conditionMap));
         responseEntity = new ResponseEntity<>();
         responseEntity.setCode(200);
-        responseEntity.setMsg("ok");
+        responseEntity.setMessage("ok");
         return responseEntity;
     }
 
@@ -136,5 +137,17 @@ public class VideoController {
             videoService.updUserVideoNum(user.getId());
         }
         return "redirect:/index";
+    }
+
+
+    @Autowired
+    private HisAndColService hisAndColService;
+
+    @GetMapping("/del/{id}")
+    public  String del(@PathVariable int id, Model model,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        videoService.delVideoById(id);
+        model.addAttribute("videos", hisAndColService.getMyVideo(user.getId()));
+        return "home/myVideo";
     }
 }

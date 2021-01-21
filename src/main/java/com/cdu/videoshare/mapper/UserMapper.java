@@ -24,6 +24,7 @@ public interface UserMapper {
 
     void update(@Param("id") int id, @Param("status") String status);
     void delById(int id);
+    void modifyStatus(int id,int status);
 
 
 }

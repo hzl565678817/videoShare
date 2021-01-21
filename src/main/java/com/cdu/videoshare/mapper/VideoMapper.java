@@ -38,5 +38,5 @@ public interface VideoMapper {
     void modifyStatus(int id,int status);
     int modifyViewNum(int userId,int videoId);
 
-
+    void delVideoById(int id);
 }

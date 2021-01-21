@@ -85,4 +85,9 @@ public class VideoServiceImpl implements VideoService {
     public int modifyViewNum(int userId, int videoId) {
         return videoMapper.modifyViewNum(userId,videoId);
     }
+
+    @Override
+    public void delVideoById(int id) {
+        videoMapper.delVideoById(id);
+    }
 }

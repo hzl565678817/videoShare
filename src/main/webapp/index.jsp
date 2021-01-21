@@ -60,6 +60,29 @@
     });
 </script>
 
+<script>
+    $(document).ready(function(){
+        var user = "${sessionScope.user}"
+        //点击链接的时候调用
+        $("#myVideo").click(function () {
+            if (user == null || user == "") {
+                layer.confirm('您需要登录后才能查看，是否前往登录？', {
+                    btn: ['登录', '取消'], //按钮
+                    cancel: function(index){
+                        layer.close(index);
+                    },title:'查看提示',
+                }, function () {
+                    window.location.href = "/user/login";
+                }, function (index) {
+                    layer.close(index);
+                });
+            }else {
+                window.open("/view/myvideo");
+            }
+        });
+    });
+</script>
+
 <body>
 <div
         class="v3-app-layout layoutstatus-header--Normal layoutstatus-side--Normal limitWidth">
@@ -68,7 +91,7 @@
         <div class="v3-app-layout__side__Normal">
             <div class="v3-app-layout__side__Normal__contentWrapper">
                 <div class="v3-app-layout__side__block-top">
-                    <a id="index" class="v3-app-layout__side__item active" href="/index"><i
+                    <a id="index" class="v3-app-layout__side__item" href="/index"><i
                             class="icon-home"></i><span>首页</span></a>
                 </div>
                 <div id="te" class="v3-app-layout__side__block-channel">
@@ -84,7 +107,7 @@
                         <i class="icon-history"></i><span>观看历史</span></a>
                     <a id="viewCollection" class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我的收藏</span></a>
-                    <a href="view/myvideo" class="v3-app-layout__side__item">
+                    <a id="myVideo" class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我的视频</span></a>
                     <a  class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我点赞的视频</span></a>
@@ -110,7 +133,7 @@
                             <c:forEach items="${videos}" begin="0" end="${fn:length(videos)}" var="video" varStatus="p">
                                 <div class="FeedContainer__itemWrapper">
                                     <div class="VerticalFeedCard VerticalChannelBlockList__item">
-                                        <a  class="VerticalFeedCard__coverWrapper" title=""
+                                        <a href="video/view/${video.id}"  class="VerticalFeedCard__coverWrapper" title=""
                                            target="_blank" data-disable_default="true">
                                             <picture>
                                                 <source srcSet="" type="image/webp"/>
@@ -137,5 +160,20 @@
 </div>
 </div>
 </body>
-
+<script>
+    $(document).ready(function (){
+        $(".v3-app-layout__side__block-channel a").each(function(){
+            $this = $(this);
+            if($this[0].href==String(window.location)){
+                $('.v3-app-layout__side__item').removeClass("active");
+                $(".v3-app-layout__side__block-channel a").removeClass("active");
+                $this.addClass("active");
+            }
+        })
+        var pathname = window.location.pathname;
+        if (pathname == '/index'){
+            $('#index').addClass("active");
+        }
+    })
+</script>
 </html>

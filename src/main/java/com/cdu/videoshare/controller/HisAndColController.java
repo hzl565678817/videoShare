@@ -46,7 +46,7 @@ public class HisAndColController {
     @GetMapping("myvideo")
     public String viewMy(Model model, HttpSession session){
         User user = (User) session.getAttribute("user");
-        model.addAttribute("videos", hisAndColService.getAllCollection(user.getId()));
+        model.addAttribute("videos", hisAndColService.getMyVideo(user.getId()));
         return "home/myVideo";
     }
 

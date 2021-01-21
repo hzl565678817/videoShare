@@ -31,6 +31,53 @@
                 .removeAttr('selected');
         }
     </script>
+    <script>
+        function modify(userId){
+            layer.confirm('请选择启用或者停用', {
+                btn: ['启用', '停用','取消'], //按钮
+                cancel: function(index){
+                    layer.close(index);
+                },title:'审核提示',
+            }, function () {
+                $.ajax({
+                    url: "user/modify/normal",
+                    type: "get",
+                    data: {
+                        id: userId
+                    },
+                    success: function (data) {
+                        if(data.code == "200"){
+                            setTimeout(function(){window.location.reload()},500)
+                            layer.msg('启用成功!', {icon: 1, time: 500});
+                        }else {
+                            setTimeout(function(){window.location.reload()},500)
+                            layer.msg('启用失败!', {icon: 1, time: 500});
+                        }
+                    }
+                })
+            }, function (index) {
+                $.ajax({
+                    url: "user/modify/ban",
+                    type: "get",
+                    data: {
+                        id: userId
+                    },
+                    success: function (data) {
+                        if(data.code == "200"){
+                            setTimeout(function(){window.location.reload()},500)
+                            layer.msg('停用成功!', {icon: 1, time: 500});
+                        }else {
+                            setTimeout(function(){window.location.reload()},500)
+                            layer.msg('停用失败!', {icon: 1, time: 500});
+                        }
+                    }
+                })
+                layer.close(index);
+            });
+        }
+
+
+    </script>
 </head>
 <body>
 
@@ -96,7 +143,7 @@
 
                             <div class="button-group">
 
-                                <a class="button border-main" href=""><span
+                                <a onclick="modify(${user.id})" class="button border-main" ><span
                                         class="icon-edit"></span> 审核</a>
 
                                     <a class="button border-red"

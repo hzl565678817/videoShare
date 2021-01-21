@@ -29,7 +29,24 @@
         <result property="viewTime" column="view_time"/>
     </resultMap>
 
-    <select id="getMyVideo" parameterType="int" resultMap="viewHisAndCol">
+
+    <resultMap id="myVideo" type="Video">
+        <!-- 定义主键 ,非常重要。如果是多个字段,则定义多个id -->
+        <!-- property：主键在pojo中的属性名 -->
+        <!-- column：主键在数据库中的列名 -->
+        <id property="id" column="id"/>
+        <!-- 定义普通属性 -->
+        <result property="title" column="title"/>
+        <result property="url" column="url"/>
+        <result property="cover" column="cover"/>
+        <result property="pubTime" column="pub_time"/>
+        <result property="viewNum" column="view_num"/>
+        <result property="praiseNum" column="praise_num"/>
+        <result property="status.id" column="status"/>
+
+
+    </resultMap>
+    <select id="getMyVideo" parameterType="int" resultMap="myVideo">
         select * from wn_video where user_id=#{userId};
     </select>
 

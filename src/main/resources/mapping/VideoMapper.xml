@@ -67,7 +67,7 @@
     </update>
 
     <select id="getForIndexByCategory" parameterType="int" resultType="Video">
-        select * from wn_video where category_id=#{id};
+        select * from wn_video where category_id=#{id} and status = 1;
     </select>
 
     <select id="getForIndexByName"  resultType="Video" parameterType="String">
@@ -84,6 +84,11 @@
     <update id="modifyViewNum" parameterType="int">
         update wn_video set view_num = view_num + 1 where id=#{videoId} and user_id=#{userId};
     </update>
+
+    <delete id="delVideoById" parameterType="int">
+        delete  from wn_video where id=#{id}
+    </delete>
+
 
 
 

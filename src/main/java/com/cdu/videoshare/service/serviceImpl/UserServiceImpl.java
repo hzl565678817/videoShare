@@ -64,4 +64,9 @@ public class UserServiceImpl implements UserService {
     public void update(int id, String status) {
         userMapper.update(id, status);
     }
+
+    @Override
+    public void modifyStatus(int id, int status) {
+        userMapper.modifyStatus(id,status);
+    }
 }

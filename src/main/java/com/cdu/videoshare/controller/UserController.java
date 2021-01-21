@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.Map;
@@ -68,12 +69,12 @@ public class UserController {
         if (status != STATUS){
             responseEntity = new ResponseEntity<>();
             responseEntity.setCode(500);
-            responseEntity.setMsg("error");
+            responseEntity.setMessage("error");
             model.addAttribute("msg","注册失败，服务器异常");
         }else {
             responseEntity = new ResponseEntity<>();
             responseEntity.setCode(200);
-            responseEntity.setMsg("ok");
+            responseEntity.setMessage("ok");
         }
         return responseEntity;
     }
@@ -88,14 +89,18 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public String login(String account, String password, Model model, HttpSession session){
+    public String login(String account, String password, HttpSession session, Model model){
         User user = userService.getUserByAccountAndPwd(account, password);
-        if (user == null){
+
+        if (user == null) {
             model.addAttribute("msg","用户名或密码有误，请重新输入");
+            return "/login";
+        }else if(((user.getStatus().getId())==2)){
+            model.addAttribute("msg","您的账号被封了！");
             return "/login";
         }
         session.setAttribute("user",user);
-        return "redirect:/index";
+        return "/index";
     }
 
 
@@ -117,6 +122,32 @@ public class UserController {
         return "admin/user_list";
     }
 
+
+    @GetMapping("/modify/normal")
+    @ResponseBody
+    public ResponseEntity<Void> modifyStatusNormal(Integer id,Integer pageNum, Model model,UserQueryCondition condition) {
+        int status = 1;
+        ResponseEntity<Void> responseEntity = null;
+        userService.modifyStatus(id,status);
+        model.addAttribute("pageInfo", userService.getAll(pageNum == null ? 1 : pageNum,condition));
+        responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(200);
+        responseEntity.setMessage("ok");
+        return responseEntity;
+    }
+
+    @GetMapping("/modify/ban")
+    @ResponseBody
+    public ResponseEntity<Void> modifyStatusBan(Integer id,Integer pageNum, Model model,UserQueryCondition condition) {
+        int status = 2;
+        ResponseEntity<Void> responseEntity = null;
+        userService.modifyStatus(id,status);
+        model.addAttribute("pageInfo", userService.getAll(pageNum == null ? 1 : pageNum,condition));
+        responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(200);
+        responseEntity.setMessage("ok");
+        return responseEntity;
+    }
 
 
 

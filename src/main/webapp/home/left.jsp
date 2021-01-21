@@ -8,39 +8,57 @@
     <link rel="stylesheet" href="css/index.css"/>
     <script src="js/jquery-3.4.1.js" ></script>
 </head>
+<script>
+    $(document).ready(function (){
+        $(".compoent-sortTabs__tabItem a").each(function(){
+            $this = $(this);
+            if($this[0].href==String(window.location)){
+                $(".compoent-sortTabs__tabItem").removeClass("active");
+                $this.parent().parent().addClass("active");
+            }
+        })
+    })
+</script>
+
 
 <body>
 <div class="compoent-sortTabs__container">
-    <a href="home/personal" target="_parent"><div class="compoent-sortTabs__tabItemWrapper">
-        <div id="accountSet" class="compoent-sortTabs__tabItem ">
-            <i class="icon-person2"></i><span>账号设置</span>
+    <div class="compoent-sortTabs__tabItemWrapper">
+        <div id="accountSet" class="compoent-sortTabs__tabItem active">
+            <i class="icon-person2"></i><span><a href="home/personal" id="id1" target="_parent">账号设置</a></span>
             <div class="ink"></div>
         </div>
-    </div></a>
-    <div class="compoent-sortTabs__tabItemWrapper">
-        <a href="video/add" target="_parent"><div id="pubVideo" class="compoent-sortTabs__tabItem ">
-            <i class="icon-vip"></i><span>发布视频</span>
-            <div class="ink"></div>
-        </div></a>
     </div>
     <div class="compoent-sortTabs__tabItemWrapper">
-        <a href="view/myvideo" target="_parent"><div id="myVideo" class="compoent-sortTabs__tabItem" >
-            <i class="icon-vip"></i><span>我的视频</span>
-            <div class="ink"></div>
-        </div></a>
-    </div>
-    <div class="compoent-sortTabs__tabItemWrapper">
-        <a href="view/collection" target="_parent"><div id="myCollection" class="compoent-sortTabs__tabItem">
-            <i class="icon-vip"></i><span>我的收藏</span>
-            <div class="ink"></div>
-        </div></a>
-    </div>
-    <div class="compoent-sortTabs__tabItemWrapper">
-        <a href="view/history" target="_parent"><div class="compoent-sortTabs__tabItem">
-            <i class="icon-vip"></i><span>历史记录</span>
+            <div id="pubVideo" class="compoent-sortTabs__tabItem ">
+            <i class="icon-vip"></i><span><a href="video/add">发布视频</a></span>
             <div class="ink"></div>
         </div>
-    </div></a>
+    </div>
+    <div class="compoent-sortTabs__tabItemWrapper">
+        <div id="myVideo" class="compoent-sortTabs__tabItem" >
+            <i class="icon-vip"></i><span><a href="view/myvideo">我的视频</a></span>
+            <div class="ink"></div>
+        </div>
+    </div>
+   <div class="compoent-sortTabs__tabItemWrapper">
+        <div id="myCollection" class="compoent-sortTabs__tabItem">
+            <i class="icon-vip"></i><span> <a href="view/collection">我的收藏</a></span>
+            <div class="ink"></div>
+        </div>
+    </div>
+    <div class="compoent-sortTabs__tabItemWrapper">
+        <div class="compoent-sortTabs__tabItem">
+            <i class="icon-vip"></i><span><a href="view/history">历史记录</a></span>
+            <div class="ink"></div>
+        </div>
+    </div>
+    <div class="compoent-sortTabs__tabItemWrapper">
+        <div class="compoent-sortTabs__tabItem">
+            <i class="icon-vip"></i><span><a href="view/history">点赞视频</a></span>
+            <div class="ink"></div>
+        </div>
+    </div>
     <div class="compoent-sortTabs__appendNode"></div>
 </div>
 </body>
