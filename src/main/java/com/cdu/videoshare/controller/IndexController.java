@@ -57,7 +57,7 @@ public class IndexController {
             }else {
                 hisAndColService.addHistoryByUser(user.getId(), id);
             }
-            model.addAttribute("praise",favorService.checkPraise(id, user.getId()));
+            model.addAttribute("favor",favorService.checkFavor(id, user.getId()));
         }
 
         model.addAttribute("categories",categoryService.getAll());

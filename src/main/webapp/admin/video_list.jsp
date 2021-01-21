@@ -109,7 +109,7 @@
                 </li>
                 <li>
                     <button class="button border-main " onclick="formReset()">
-                        <i class="layui-icon">&#xe669;</i> 刷新
+                        <i class="layui-icon">&#xe669;</i> 重置
                     </button>
                 </li>
             </ul>

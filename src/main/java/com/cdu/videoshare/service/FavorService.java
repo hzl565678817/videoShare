@@ -15,7 +15,7 @@ public interface FavorService {
 
     int recordFavor(Favor favor);
 
-    Favor checkPraise(int videoId,int userId);
+    Favor checkFavor(int videoId,int userId);
 
     int cancelFavor(Favor favor);
 

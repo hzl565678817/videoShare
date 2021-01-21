@@ -70,10 +70,10 @@
 									<div class="teleplayPage__interactionZone__LeftActions">
 										<div class="action-collect">
 											<i class="action-collect__lottie"></i>
-											<c:if test="${not empty praise}">
+											<c:if test="${not empty favor}">
 											<span id="favor" class="action-collect__txt" onclick="Praise(this,${video.id})">取消收藏</span>
 											</c:if>
-											<c:if test="${empty praise}">
+											<c:if test="${empty favor}">
 											<span id="favor" class="action-collect__txt" onclick="Praise(this,${video.id})">收藏</span>
 											</c:if>
 										</div>

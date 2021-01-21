@@ -10,7 +10,7 @@
         values (#{videoId},#{userId});
     </insert>
 
-    <select id="checkPraise" parameterType="int" resultType="Favor">
+    <select id="checkFavor" parameterType="int" resultType="Favor">
         SELECT * FROM `wn_favor` WHERE video_id = #{videoId} and user_id = #{userId};
     </select>
     

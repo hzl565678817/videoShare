@@ -74,7 +74,7 @@
 <script>
     function check(status,id){
         if (status == "2"){
-            layer.msg("该视频已被禁止播放");
+            layer.msg("该视频已被禁止播放" ,{icon: 2, time: 700});
         }else {
             window.open("video/view/"+id);
         }
@@ -104,6 +104,13 @@
                         <i class="icon-history"></i><span>观看历史</span></a>
                     <a id="viewCollection" class="v3-app-layout__side__item">
                         <i class="icon-side_collect"></i><span>我的收藏</span></a>
+                    <a  class="v3-app-layout__side__item">
+                        <i class="icon-side_collect"></i><span>我的视频</span></a>
+                    <a  class="v3-app-layout__side__item">
+                        <i class="icon-side_collect"></i><span>我点赞的视频</span></a>
+                    <a  class="v3-app-layout__side__item">
+                        <i class="icon-side_collect"></i><span>我评论的视频</span></a>
+
                 </div>
                 <div class="v3-app-layout__side__block-agreement">
                     <a href="" target="_blank">关于我们</a><a href="" target="_blank">成为创作者</a><br/>

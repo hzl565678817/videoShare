@@ -14,11 +14,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FavorMapper {
 
-    int clickPraise(int id);
 
     int recordFavor(Favor favor);
 
-    Favor checkPraise(int videoId,int userId);
+    Favor checkFavor(int videoId,int userId);
 
     int cancelFavor(Favor favor);
 

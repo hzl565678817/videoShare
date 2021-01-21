@@ -68,7 +68,7 @@
 
                     <li>
                         <button class="button border-main " onclick="formReset()">
-                            <i class="layui-icon">&#xe669;</i> 刷新
+                            <i class="layui-icon">&#xe669;</i> 重置
                         </button>
                     </li>
                 </ul>
@@ -148,7 +148,8 @@
                 },
                 success: function (data) {
                     $(obj).parents("tr").remove();
-                    layer.msg('已删除!', {icon: 1, time: 1000});
+                    setTimeout(function (){window.location.href='user/list'},700);
+                    layer.msg('已删除!', {icon: 1, time: 700});
                 }
             })
         });

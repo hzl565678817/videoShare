@@ -26,8 +26,8 @@ public class FavorServiceImpl implements FavorService {
     }
 
     @Override
-    public Favor checkPraise(int videoId,int userId) {
-        return favorMapper.checkPraise(videoId,userId);
+    public Favor checkFavor(int videoId,int userId) {
+        return favorMapper.checkFavor(videoId,userId);
     }
 
     @Override
