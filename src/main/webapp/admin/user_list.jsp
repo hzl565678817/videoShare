@@ -195,7 +195,6 @@
                 },
                 success: function (data) {
                     $(obj).parents("tr").remove();
-                    setTimeout(function (){window.location.href='user/list'},700);
                     layer.msg('已删除!', {icon: 1, time: 700});
                 }
             })
