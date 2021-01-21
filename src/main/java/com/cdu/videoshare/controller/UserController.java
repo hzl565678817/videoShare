@@ -103,6 +103,11 @@ public class UserController {
         return "redirect:/index";
     }
 
+    @GetMapping("/logout")
+    public String logOut(HttpSession session){
+        session.invalidate();
+        return "redirect:/index";
+    }
 
     //用户列表方法整合
     @GetMapping("list")

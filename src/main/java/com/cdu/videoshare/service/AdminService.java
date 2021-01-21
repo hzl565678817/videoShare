@@ -15,4 +15,6 @@ public interface AdminService {
      * @return admin实体
      */
     Admin login(String account);
+
+    void updatePwd(int id,String password1);
 }

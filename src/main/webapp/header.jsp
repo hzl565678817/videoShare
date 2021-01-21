@@ -114,7 +114,7 @@
                                                 <a href="/home/index" class="btn"><i class="fas fa-user-circle"></i>我的帐户</a>
                                             </li>
                                             <li class="item">
-                                                <a href="/admin/logout" class="btn"><i class="fas fa-sign-out-alt"></i>退出登录</a>
+                                                <a href="/user/logout" class="btn"><i class="fas fa-sign-out-alt"></i>退出登录</a>
                                             </li>
                                         </ul>
                                     </div>

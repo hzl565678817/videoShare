@@ -24,4 +24,9 @@ public class AdminServiceImpl implements AdminService {
     public Admin login(String account) {
         return adminMapper.getByAccountAndPwd(account);
     }
+
+    @Override
+    public void updatePwd(int id, String password1) {
+        adminMapper.updatePwd(id,password1);
+    }
 }

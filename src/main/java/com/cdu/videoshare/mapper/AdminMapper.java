@@ -2,6 +2,7 @@ package com.cdu.videoshare.mapper;
 
 import com.cdu.videoshare.model.Admin;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +17,5 @@ public interface AdminMapper {
      */
     Admin getByAccountAndPwd(String account );
 
-
+    void updatePwd(@Param("id") int id, @Param("password1") String password1);
 }

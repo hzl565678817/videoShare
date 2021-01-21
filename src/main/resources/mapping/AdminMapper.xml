@@ -10,4 +10,8 @@
     <select id="getByAccountAndPwd" resultType="Admin">
         select * from wn_admin where account = #{account};
     </select>
+
+    <update id="updatePwd">
+        update wn_admin set password=#{password1} where id=#{id}
+    </update>
 </mapper>

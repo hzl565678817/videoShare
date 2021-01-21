@@ -1,7 +1,10 @@
 package com.cdu.videoshare.controller;
 
 import com.cdu.videoshare.model.Admin;
+import com.cdu.videoshare.model.User;
 import com.cdu.videoshare.service.AdminService;
+import com.cdu.videoshare.service.HomeService;
+import com.cdu.videoshare.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,8 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+
 
     /**
      * 访问登录页面
@@ -60,13 +65,27 @@ public class AdminController {
     @GetMapping("/logout")
     public String logOut(HttpSession session){
         session.invalidate();
-        return "redirect:/index";
+        return "redirect:/admin/login";
     }
 
 
     @GetMapping("modifypwd")
-    public String modifyPwd(){
+    public String modify(Model model,HttpSession session){
+        Admin admin = (Admin) session.getAttribute("admin");
+        model.addAttribute("admin",admin);
         return "admin/updpwd";
+    }
+
+    @PostMapping("updatepwd")
+    public String modifyPwd(int id, String password1, String password2, Model model){
+        if (password1.equals(password2)) {
+            adminService.updatePwd(id, password1);
+            model.addAttribute("msg", "修改成功");
+            return "admin/updpwd";
+        } else {
+            model.addAttribute("msg", "确认密码不一致");
+            return "admin/updpwd";
+        }
     }
 
 }
