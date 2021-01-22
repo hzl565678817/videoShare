@@ -86,7 +86,7 @@
 									<div class="UserCenter__profile__item">
 										<div class="UserCenter__profile__item-wrapper">
 											<div>
-												<a  href="/home/updview00">  <button class="form-button btn-active">修改</button></a>
+												<a  href="/home/updview">  <button class="form-button btn-active">修改</button></a>
 											</div>
 										</div>
 									</div>
