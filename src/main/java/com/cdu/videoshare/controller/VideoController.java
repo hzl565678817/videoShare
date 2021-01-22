@@ -146,8 +146,31 @@ public class VideoController {
     @GetMapping("/del/{id}")
     public  String del(@PathVariable int id, Model model,HttpSession session) {
         User user = (User) session.getAttribute("user");
-        videoService.delVideoById(id);
+        videoService.delVideoById(id,user.getId());
         model.addAttribute("videos", hisAndColService.getMyVideo(user.getId()));
         return "home/myVideo";
+    }
+
+    @GetMapping("/delhis/{id}")
+    public  String delHis(@PathVariable int id, Model model,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        videoService.delHisById(id,user.getId());
+        model.addAttribute("videos", hisAndColService.getMyVideo(user.getId()));
+        return "home/videoHistory";
+    }
+    @GetMapping("/delFavor/{id}")
+    public  String delFar(@PathVariable int id, Model model,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        videoService.delFavorById(id,user.getId());
+        model.addAttribute("videos", hisAndColService.getMyVideo(user.getId()));
+        return "home/videoCollection";
+    }
+
+    @GetMapping("/delPraise/{id}")
+    public  String delPra(@PathVariable int id, Model model,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        videoService.delPraiseById(id,user.getId());
+        model.addAttribute("videos", hisAndColService.getMyVideo(user.getId()));
+        return "home/videoPraise";
     }
 }

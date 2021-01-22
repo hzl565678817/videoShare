@@ -63,7 +63,7 @@
                                                                          src="images/${video.cover}" alt="${video.title}" /> </picture>
                                                             </a><a class="VerticalFeedCard__title" title="${video.title}" href="video/view/${video.id}"
                                                                    target="_blank" data-disable_default="true">${video.title}</a>
-                                                            <div class="VerticalFeedCard__bottomInfo"><a href="/video/del/${video.id}">删除</a></div>
+                                                            <div class="VerticalFeedCard__bottomInfo"><a href="/video/delPraise/${video.id}">删除</a></div>
                                                         </div>
                                                     </div>
                                                     <c:if test="${s.count mod 5 eq 0 }">

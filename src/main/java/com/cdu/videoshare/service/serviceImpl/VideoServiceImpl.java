@@ -87,7 +87,22 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void delVideoById(int id) {
-        videoMapper.delVideoById(id);
+    public void delVideoById(int id,int userId) {
+        videoMapper.delVideoById(id,userId);
+    }
+
+    @Override
+    public void delFavorById(int id,int userId) {
+        videoMapper.delFavorById(id,userId);
+    }
+
+    @Override
+    public void delHisById(int id,int userId) {
+        videoMapper.delHisById(id,userId);
+    }
+
+    @Override
+    public void delPraiseById(int id,int userId) {
+        videoMapper.delPraiseById(id,userId);
     }
 }

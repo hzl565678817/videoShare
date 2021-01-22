@@ -86,7 +86,22 @@
     </update>
 
     <delete id="delVideoById" parameterType="int">
-        delete  from wn_video where id=#{id}
+        delete  from wn_video where id=#{id} and user_id=#{userId};
+    </delete>
+
+
+
+    <delete id="delFavorById">
+        delete from wn_favor where video_id=#{id} and user_id=#{userId};
+    </delete>
+
+    <delete id="delHisById">
+        delete from wn_history where video_id=#{id} and user_id=#{userId};
+    </delete>
+
+
+    <delete id="delPraiseById">
+        delete from wn_praise where video_id=#{id} and user_id=#{userId};
     </delete>
 
 
